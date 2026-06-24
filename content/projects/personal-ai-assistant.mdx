@@ -1,0 +1,23 @@
+---
+title: "Personal AI Assistant"
+description: "A conversational AI assistant built with LLMs and a custom RAG pipeline for personalized responses."
+stack: ["Python", "LangChain", "OpenAI", "FastAPI", "React"]
+github: "https://github.com/rohanpatil1794/Personal-AI-Assistant"
+featured: true
+date: "2024-08-01"
+---
+
+## Overview
+
+A full-stack personal AI assistant that uses Retrieval-Augmented Generation (RAG) to answer questions grounded in your own documents and notes.
+
+## Key Features
+
+- **RAG pipeline** — Ingests PDFs and text files, chunks them, embeds via OpenAI, stores in a vector DB
+- **Conversational memory** — Maintains multi-turn conversation history per session
+- **FastAPI backend** — Async API with streaming responses
+- **React frontend** — Clean chat UI with markdown rendering
+
+## Technical Details
+
+The system uses LangChain's `RetrievalQA` chain with a custom prompt template that keeps responses grounded in retrieved context. Embeddings are stored in ChromaDB for fast similarity search.

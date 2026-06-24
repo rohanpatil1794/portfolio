@@ -1,0 +1,40 @@
+---
+title: "Building a RAG Pipeline from Scratch"
+description: "A step-by-step guide to building a production-ready Retrieval-Augmented Generation pipeline."
+date: "2024-09-01"
+tags: ["AI", "LLMs", "Python", "RAG"]
+---
+
+## What is RAG?
+
+Retrieval-Augmented Generation (RAG) enhances LLM responses by grounding them in retrieved documents — reducing hallucinations and enabling the model to answer questions about private or up-to-date data.
+
+## The Pipeline
+
+1. **Ingestion** — Load documents, chunk them into passages
+2. **Embedding** — Convert passages to dense vectors
+3. **Indexing** — Store vectors in a FAISS or ChromaDB index
+4. **Retrieval** — At query time, embed the question and find top-k nearest passages
+5. **Generation** — Pass retrieved context + question to the LLM
+
+## Implementation
+
+```python
+from langchain.vectorstores import FAISS
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.chains import RetrievalQA
+from langchain.llms import OpenAI
+
+embeddings = OpenAIEmbeddings()
+vectorstore = FAISS.from_documents(docs, embeddings)
+qa = RetrievalQA.from_chain_type(
+    llm=OpenAI(),
+    retriever=vectorstore.as_retriever(search_kwargs={"k": 4})
+)
+```
+
+## Lessons Learned
+
+- Chunk size matters — 512 tokens with 50-token overlap works well for most docs
+- Hybrid search (dense + BM25) beats pure dense retrieval for factual queries
+- Always include source citations in the prompt template

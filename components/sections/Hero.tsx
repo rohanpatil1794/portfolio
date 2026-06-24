@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Github, Linkedin } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "@/components/ui/icons";
 
 const container = {
   hidden: { opacity: 0 },
@@ -14,7 +15,7 @@ const container = {
 
 const item = {
   hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
 };
 
 export default function Hero() {
@@ -70,7 +71,7 @@ export default function Hero() {
             rel="noopener noreferrer"
             className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
           >
-            <Github size={20} />
+            <GithubIcon size={20} />
           </Link>
           <Link
             href="https://linkedin.com/in/rohanpatil1794"
@@ -78,7 +79,7 @@ export default function Hero() {
             rel="noopener noreferrer"
             className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
           >
-            <Linkedin size={20} />
+            <LinkedinIcon size={20} />
           </Link>
         </motion.div>
       </motion.div>
