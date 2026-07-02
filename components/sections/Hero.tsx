@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/icons";
+import GridBackground from "@/components/ui/GridBackground";
 
 const container = {
   hidden: { opacity: 0 },
@@ -20,7 +21,8 @@ const item = {
 
 export default function Hero() {
   return (
-    <section className="mx-auto max-w-5xl px-6 py-24 md:py-36">
+    <section className="relative mx-auto max-w-5xl px-6 py-24 md:py-36">
+      <GridBackground />
       <motion.div
         variants={container}
         initial="hidden"
